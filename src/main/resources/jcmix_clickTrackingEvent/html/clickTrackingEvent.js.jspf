@@ -1,0 +1,12 @@
+<%--@elvariable id="currentNode" type="org.jahia.services.content.JCRNodeWrapper"--%>
+element?.addEventListener('click', e => {
+    window.dispatchClickTrackingEvent({
+        currentTarget: e.currentTarget,
+        target: e.target,
+        detail: {
+            name: '${currentNode.name}',
+            displayableName: '${currentNode.displayableName}',
+            path: '${currentNode.path}'
+        }
+    });
+});

@@ -1,0 +1,19 @@
+<jcmix = 'http://www.jahiacommunity.org/jahia/mix/1.0'>
+<jnt = 'http://www.jahia.org/jahia/nt/1.0'>
+<jmix = 'http://www.jahia.org/jahia/mix/1.0'>
+
+[jcmix:clickTrackingEvent] > jmix:autoPublish mixin
+ extends = jnt:content
+ - type (string, choicelist[addMixinInitializer,resourceBundle]) mandatory < 'jcmix:clickTrackingEventByHtmlId', 'jcmix:clickTrackingEventByName', 'jcmix:clickTrackingEventByQuerySelector'
+
+[jcmix:clickTrackingEventByHtmlId] > jmix:dynamicFieldset mixin
+ extends = jnt:content
+ - htmlId (string) multiple
+
+[jcmix:clickTrackingEventByName] > jmix:dynamicFieldset mixin
+ extends = jnt:content
+ - name (string) multiple
+
+[jcmix:clickTrackingEventByQuerySelector] > jmix:dynamicFieldset mixin
+ extends = jnt:content
+ - querySelector (string) multiple
