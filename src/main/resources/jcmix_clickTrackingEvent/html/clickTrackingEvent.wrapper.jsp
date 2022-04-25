@@ -20,6 +20,9 @@
             // dispatch a custom event
             document.dispatchEvent(new CustomEvent('ClickTrackingEvent', {
                 detail: {
+                    name: event.detail?.name,
+                    displayableName: event.detail?.displayableName,
+                    path: event.detail?.path,
                     src: event.target?.src || event.currentTarget?.src || null,
                     href: event.target?.href || event.currentTarget?.href || null
                 }
@@ -28,7 +31,12 @@
             // check if jExperience is enabled
             if (window.wem) {
                 // send event to Unomi
-                wem.sendClickEvent(event);
+                wem.collectEvents({
+                    events: [
+                        wem.buildEvent('click',
+                            wem.buildTarget(event.detail.path, event.target.tagName),
+                            wem.buildSourcePage())]
+                });
             }
         };
     </script>
